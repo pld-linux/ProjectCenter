@@ -2,7 +2,7 @@ Summary:	ProjectCenter - the GNUstep IDE
 Summary(pl):	ProjectCenter - IDE dla ¶rodowiska GNUstep
 Name:		ProjectCenter
 Version:	0.4.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/dev-apps/%{name}-%{version}.tar.gz

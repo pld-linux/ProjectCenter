@@ -1,13 +1,12 @@
 Summary:	ProjectCenter - the GNUstep IDE
 Summary(pl):	ProjectCenter - IDE dla ¶rodowiska GNUstep
 Name:		ProjectCenter
-Version:	0.3.5
-Release:	0.1
+Version:	0.3.6
+Release:	1
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/dev-apps/%{name}-%{version}.tar.gz
-# Source0-md5:	a8a6f17ea9d2cd1bc1ac7dea53e350c6
-Patch0:		%{name}-update.patch
+# Source0-md5:	447d2f6baec0ca15b30875be748ba31e
 URL:		http://www.gnustep.org/experience/ProjectCenter.html
 BuildRequires:	gnustep-gui-devel >= 0.8.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -34,7 +33,6 @@ projektu GNUstep.
 
 %prep
 %setup -q -n %{name}
-%patch -p1
 
 %build
 . %{_prefix}/System/Library/Makefiles/GNUstep.sh

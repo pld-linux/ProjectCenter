@@ -12,7 +12,7 @@ URL:		http://www.gnustep.org/experience/ProjectCenter.html
 BuildRequires:	gnustep-gui-devel >= 0.8.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _prefix         /usr/%{_lib}/GNUstep
+%define		_prefix		/usr/%{_lib}/GNUstep
 
 %define		libcombo	gnu-gnu-gnu
 %define		gsos		linux-gnu

@@ -7,9 +7,9 @@ License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/dev-apps/%{name}-%{version}.tar.gz
 # Source0-md5:	a8a6f17ea9d2cd1bc1ac7dea53e350c6
+Patch0:		%{name}-update.patch
 URL:		http://www.gnustep.org/experience/ProjectCenter.html
-BuildRequires:	gnustep-extensions-devel
-BuildRequires:	gnustep-gui-devel
+BuildRequires:	gnustep-gui-devel >= 0.8.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _prefix         /usr/lib/GNUstep
@@ -34,6 +34,7 @@ projektu GNUstep.
 
 %prep
 %setup -q -n %{name}
+%patch -p1
 
 %build
 . %{_prefix}/System/Library/Makefiles/GNUstep.sh
@@ -73,6 +74,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_prefix}/System/Applications/ProjectCenter.app/%{gscpu}/%{gsos}/%{libcombo}/ProjectCenter
 %{_prefix}/System/Applications/ProjectCenter.app/%{gscpu}/%{gsos}/%{libcombo}/*.openapp
 
-%{_prefix}/System/Library/Headers/ProjectCenter
+%{_prefix}/System/Library/Headers/%{libcombo}/ProjectCenter
 
 %{_prefix}/System/Library/Libraries/%{gscpu}/%{gsos}/%{libcombo}/lib*.so*

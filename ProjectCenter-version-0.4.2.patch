@@ -1,0 +1,27 @@
+diff -Naur ProjectCenter-0.4.2/Library/GNUmakefile ProjectCenter-0.4.2_new/Library/GNUmakefile
+--- ProjectCenter-0.4.2/Library/GNUmakefile	2005-01-23 03:18:58.000000000 +0100
++++ ProjectCenter-0.4.2_new/Library/GNUmakefile	2005-02-02 13:04:16.455270632 +0100
+@@ -9,9 +9,9 @@
+ #
+ # Framework
+ #
+-VERSION = 0.4.1
++VERSION = 0.4.2
+ FRAMEWORK_NAME = ProjectCenter
+-ProjectCenter_CURRENT_VERSION_NAME = 0.4.1
++ProjectCenter_CURRENT_VERSION_NAME = 0.4.2
+ ProjectCenter_DEPLOY_WITH_CURRENT_VERSION = yes
+ 
+ ProjectCenter_LIBRARIES_DEPEND_UPON += -lgnustep-gui
+diff -Naur ProjectCenter-0.4.2/Resources/Info-gnustep.plist ProjectCenter-0.4.2_new/Resources/Info-gnustep.plist
+--- ProjectCenter-0.4.2/Resources/Info-gnustep.plist	2005-01-23 03:19:00.000000000 +0100
++++ ProjectCenter-0.4.2_new/Resources/Info-gnustep.plist	2005-02-02 13:03:56.318331912 +0100
+@@ -3,7 +3,7 @@
+   ApplicationName = "ProjectCenter";
+   ApplicationDescription = "GNUstep Integrated Development Environment";
+   ApplicationIcon = "ProjectCenter.tiff";
+-  ApplicationRelease = "0.4.1";
++  ApplicationRelease = "0.4.2";
+   FullVersionID = "HEAD";
+   Authors = (
+     "Philippe C.D. Robert",

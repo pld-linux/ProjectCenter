@@ -1,0 +1,11 @@
+--- ProjectCenter-0.4.0/GNUmakefile.preamble.orig	2004-06-20 02:30:55.000000000 +0200
++++ ProjectCenter-0.4.0/GNUmakefile.preamble	2004-07-04 21:26:28.365480960 +0200
+@@ -45,7 +45,7 @@
+ 
+ # Additional library directories the linker should search
+ #ADDITIONAL_LIB_DIRS += -L./Library/$(GNUSTEP_OBJ_DIR)
+-ADDITIONAL_LIB_DIRS += -L./Library/ProjectCenter.framework/Versions/Current
++ADDITIONAL_LIB_DIRS += -L./Library/ProjectCenter.framework/Versions/Current/$(ARCH_OBJ_DIR)/$(LIBRARY_COMBO)
+ 
+ ADDITIONAL_TOOL_LIBS +=
+ 

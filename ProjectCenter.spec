@@ -7,6 +7,7 @@ License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/dev-apps/%{name}-%{version}.tar.gz
 # Source0-md5:	a8a6f17ea9d2cd1bc1ac7dea53e350c6
+URL:		http://www.gnustep.org/developers/ProjectCenter.html
 BuildRequires:	gnustep-extensions-devel
 BuildRequires:	gnustep-gui-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

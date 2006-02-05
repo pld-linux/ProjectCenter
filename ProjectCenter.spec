@@ -1,16 +1,15 @@
 Summary:	ProjectCenter - the GNUstep IDE
 Summary(pl):	ProjectCenter - IDE dla ¶rodowiska GNUstep
 Name:		ProjectCenter
-Version:	0.4.2
-Release:	2
+Version:	0.4.3
+Release:	1
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/dev-apps/%{name}-%{version}.tar.gz
-# Source0-md5:	62749396daf23a5e459e165808a36ce4
+# Source0-md5:	d7751435e4a94a6d198d7fa627a634f5
 Patch0:		%{name}-link.patch
-Patch1:		%{name}-version-%{version}.patch
 URL:		http://www.gnustep.org/experience/ProjectCenter.html
-BuildRequires:	gnustep-gui-devel >= 0.8.9
+BuildRequires:	gnustep-gui-devel >= 0.10.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/%{_lib}/GNUstep
@@ -36,17 +35,19 @@ projektu GNUstep.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
-. %{_prefix}/System/Library/Makefiles/GNUstep.sh
+export GNUSTEP_MAKEFILES=%{_prefix}/System/Library/Makefiles
+export GNUSTEP_TARGET_DIR=%{gscpu}/linux-gnu
+
 %{__make} \
 	OPTFLAG="%{rpmcflags}" \
 	messages=yes
 
 %install
 rm -rf $RPM_BUILD_ROOT
-. %{_prefix}/System/Library/Makefiles/GNUstep.sh
+export GNUSTEP_MAKEFILES=%{_prefix}/System/Library/Makefiles
+export GNUSTEP_TARGET_DIR=%{gscpu}/linux-gnu
 
 %{__make} install \
 	GNUSTEP_INSTALLATION_DIR=$RPM_BUILD_ROOT%{_prefix}/System

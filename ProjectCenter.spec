@@ -1,5 +1,5 @@
 Summary:	ProjectCenter - the GNUstep IDE
-Summary(pl.UTF-8):   ProjectCenter - IDE dla środowiska GNUstep
+Summary(pl.UTF-8):	ProjectCenter - IDE dla środowiska GNUstep
 Name:		ProjectCenter
 Version:	0.4.3
 Release:	1

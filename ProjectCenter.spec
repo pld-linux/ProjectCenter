@@ -1,5 +1,5 @@
 Summary:	ProjectCenter - the GNUstep IDE
-Summary(pl):	ProjectCenter - IDE dla ¶rodowiska GNUstep
+Summary(pl.UTF-8):   ProjectCenter - IDE dla Å›rodowiska GNUstep
 Name:		ProjectCenter
 Version:	0.4.3
 Release:	1
@@ -27,9 +27,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This is ProjectCenter, the GNUstep IDE (Integrated Development
 Environment) which is part of the GNUstep project.
 
-%description -l pl
+%description -l pl.UTF-8
 To jest ProjectCenter - IDE (Integrated Development Environment -
-zintegrowane ¶rodowisko programisty) dla GNUstepa, bêd±ce czê¶ci±
+zintegrowane Å›rodowisko programisty) dla GNUstepa, bÄ™dÄ…ce czÄ™Å›ciÄ…
 projektu GNUstep.
 
 %prep

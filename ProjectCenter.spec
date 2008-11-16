@@ -1,27 +1,16 @@
 Summary:	ProjectCenter - the GNUstep IDE
 Summary(pl.UTF-8):	ProjectCenter - IDE dla środowiska GNUstep
 Name:		ProjectCenter
-Version:	0.4.3
+Version:	0.5.0
 Release:	1
 License:	GPL
 Group:		X11/Development/Tools
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/dev-apps/%{name}-%{version}.tar.gz
-# Source0-md5:	d7751435e4a94a6d198d7fa627a634f5
+# Source0-md5:	acaabf63b627246f853bdd14d2455e4a
 Patch0:		%{name}-link.patch
 URL:		http://www.gnustep.org/experience/ProjectCenter.html
 BuildRequires:	gnustep-gui-devel >= 0.10.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix		/usr/%{_lib}/GNUstep
-
-%define		libcombo	gnu-gnu-gnu
-%define		gsos		linux-gnu
-%ifarch %{ix86}
-%define		gscpu		ix86
-%else
-# also s/alpha.*/alpha/, but we use only "alpha" arch for now
-%define		gscpu		%(echo %{_target_cpu} | sed -e 's/amd64/x86_64/;s/ppc/powerpc/')
-%endif
 
 %description
 This is ProjectCenter, the GNUstep IDE (Integrated Development
@@ -34,11 +23,11 @@ projektu GNUstep.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 %build
-export GNUSTEP_MAKEFILES=%{_prefix}/System/Library/Makefiles
-export GNUSTEP_TARGET_DIR=%{gscpu}/linux-gnu
+export GNUSTEP_MAKEFILES=%{_datadir}/GNUstep/Makefiles
+export GNUSTEP_FLATTENED=yes
 
 %{__make} \
 	OPTFLAG="%{rpmcflags}" \
@@ -46,11 +35,11 @@ export GNUSTEP_TARGET_DIR=%{gscpu}/linux-gnu
 
 %install
 rm -rf $RPM_BUILD_ROOT
-export GNUSTEP_MAKEFILES=%{_prefix}/System/Library/Makefiles
-export GNUSTEP_TARGET_DIR=%{gscpu}/linux-gnu
+export GNUSTEP_MAKEFILES=%{_datadir}/GNUstep/Makefiles
+export GNUSTEP_FLATTENED=yes
 
 %{__make} install \
-	GNUSTEP_INSTALLATION_DIR=$RPM_BUILD_ROOT%{_prefix}/System
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -62,30 +51,32 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc Documentation/{ANNOUNCE,AUTHORS,ChangeLog*,README*,TODO}
 
-%dir %{_prefix}/System/Applications/ProjectCenter.app
-%attr(755,root,root) %{_prefix}/System/Applications/ProjectCenter.app/ProjectCenter
-%dir %{_prefix}/System/Applications/ProjectCenter.app/Resources
-%{_prefix}/System/Applications/ProjectCenter.app/Resources/*.desktop
-%{_prefix}/System/Applications/ProjectCenter.app/Resources/*.gorm
-%{_prefix}/System/Applications/ProjectCenter.app/Resources/*.plist
-%{_prefix}/System/Applications/ProjectCenter.app/Resources/*.tiff
-%dir %{_prefix}/System/Applications/ProjectCenter.app/Resources/*.bundle
-%{_prefix}/System/Applications/ProjectCenter.app/Resources/*.bundle/Resources
-%attr(755,root,root) %{_prefix}/System/Applications/ProjectCenter.app/Resources/*.bundle/%{gscpu}
-%dir %{_prefix}/System/Applications/ProjectCenter.app/%{gscpu}
-%dir %{_prefix}/System/Applications/ProjectCenter.app/%{gscpu}/%{gsos}
-%dir %{_prefix}/System/Applications/ProjectCenter.app/%{gscpu}/%{gsos}/%{libcombo}
-%attr(755,root,root) %{_prefix}/System/Applications/ProjectCenter.app/%{gscpu}/%{gsos}/%{libcombo}/ProjectCenter
-%{_prefix}/System/Applications/ProjectCenter.app/%{gscpu}/%{gsos}/%{libcombo}/*.openapp
+%dir %{_prefix}/lib/GNUstep/Applications/ProjectCenter.app
+%attr(755,root,root) %{_prefix}/lib/GNUstep/Applications/ProjectCenter.app/ProjectCenter
+%dir %{_prefix}/lib/GNUstep/Applications/ProjectCenter.app/Resources
+%{_prefix}/lib/GNUstep/Applications/ProjectCenter.app/Resources/*.desktop
+%{_prefix}/lib/GNUstep/Applications/ProjectCenter.app/Resources/*.plist
+%{_prefix}/lib/GNUstep/Applications/ProjectCenter.app/Resources/*.tiff
+%dir %{_prefix}/lib/GNUstep/Applications/ProjectCenter.app/Resources/*.editor
+%{_prefix}/lib/GNUstep/Applications/ProjectCenter.app/Resources/*.project
+%attr(755,root,root) %{_prefix}/lib/GNUstep/Applications/ProjectCenter.app/ProjectCenter
 
-%dir %{_prefix}/System/Library/Frameworks/ProjectCenter.framework
-%dir %{_prefix}/System/Library/Frameworks/ProjectCenter.framework/Versions
-%{_prefix}/System/Library/Frameworks/ProjectCenter.framework/Versions/Current
-%dir %{_prefix}/System/Library/Frameworks/ProjectCenter.framework/Versions/%{version}
-%{_prefix}/System/Library/Frameworks/ProjectCenter.framework/Versions/%{version}/Headers
-%{_prefix}/System/Library/Frameworks/ProjectCenter.framework/Versions/%{version}/Resources
-%attr(755,root,root) %{_prefix}/System/Library/Frameworks/ProjectCenter.framework/Versions/%{version}/%{gscpu}
+%dir %{_prefix}/lib/GNUstep/Frameworks/ProjectCenter.framework
+%dir %{_prefix}/lib/GNUstep/Frameworks/ProjectCenter.framework/Versions
+%{_prefix}/lib/GNUstep/Frameworks/ProjectCenter.framework/Versions/Current
+%dir %{_prefix}/lib/GNUstep/Frameworks/ProjectCenter.framework/Versions/%{version}
+%{_prefix}/lib/GNUstep/Frameworks/ProjectCenter.framework/Versions/%{version}/Headers
+%{_prefix}/lib/GNUstep/Frameworks/ProjectCenter.framework/Versions/%{version}/Resources
+%attr(755,root,root) %{_prefix}/lib/GNUstep/Frameworks/ProjectCenter.framework/Versions/%{version}
 
-%{_prefix}/System/Library/Headers/%{libcombo}/ProjectCenter
+%{_includedir}/ProjectCenter
 
-%{_prefix}/System/Library/Libraries/%{gscpu}/%{gsos}/%{libcombo}/lib*.so*
+%attr(755,root,root) %{_prefix}/lib/lib*.so*
+%attr(755,root,root) %{_bindir}/ProjectCenter
+%{_libdir}/GNUstep/Applications/ProjectCenter.app/Resources/English.lproj/*.gorm
+%{_libdir}/GNUstep/Applications/ProjectCenter.app/Resources/*.editor
+%{_libdir}/GNUstep/Applications/ProjectCenter.app/Resources/*.parser
+%{_libdir}/GNUstep/Frameworks/ProjectCenter.framework/Headers
+%{_libdir}/GNUstep/Frameworks/ProjectCenter.framework/ProjectCenter
+%{_libdir}/GNUstep/Frameworks/ProjectCenter.framework/Resources
+%{_libdir}/GNUstep/Frameworks/ProjectCenter.framework/libProjectCenter.so
